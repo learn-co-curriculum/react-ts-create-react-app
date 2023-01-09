@@ -6,12 +6,12 @@
 
 ## Introduction
 
-So far, through this React course, a basic framework of files has been provided
+So far, through our React lessons, a basic framework of files has been provided
 in the labs. In order to make React easier to work with, a specific file
-structure and set of _dependencies_ is required. Having to set all
-that up every time can be a bit of a pain and is also prone to error. On top of
-this, copying and pasting old React projects means you may miss out on the most
-up-to-date React features.
+structure and set of _dependencies_ is required. Having to set all that up every
+time can be a bit of a pain and is also prone to error. On top of this, copying
+and pasting old React projects means you may miss out on the most up-to-date
+React features.
 
 Fortunately, the creators of React have also set up a handy tool for rapidly
 creating the barebones file structure we need for React apps. In this lesson, we
@@ -38,17 +38,28 @@ Decide on a name for your app. Once you've got one, run the following with your
 app's name in place of `your-app-name`:
 
 ```console
-$ npx create-react-app your-app-name --use-npm
+$ npx create-react-app your-app-name --use-npm --template typescript
 ```
 
-The `create-react-app` package sets up the basic file structure. Using the
-`--use-npm` flag will also instruct Create React App to run `npm install` to
-install the dependencies.
+There are a few things going on in this command. Let's break it down:
+
+1. The `create-react-app` package sets up the basic file structure.
+1. Whatever comes after that package command, in this example `your-app-name`,
+   tells Create React App what to name the parent directory of the project.
+   - **Note**: If you already created the directory you want to run Create React
+     App _in_, you can instead use the `.` syntax.
+1. Using the `--use-npm` flag will instruct Create React App to run
+   `npm install` to install the dependencies.
+1. The `--template` flag instructs Create React App what template you want to
+   use, which in our case is `typescript`. This allows us to use TypeScript in
+   our React app without us having to configure anything manually.
+   - Of course, if you would like to customize your configurations, you can go
+     in and change the generated `tsconfig.json` to your heart's desire.
 
 ## Create React App Features
 
 Let's take a tour of some of the key features of our newly created React app.
-Using Create React App version 4 (the latest version at the time of writing),
+Using Create React App version 5 (the latest version at the time of writing),
 our file structure looks like this:
 
 ```txt
@@ -57,6 +68,7 @@ your-app-name
 ├── node_modules
 ├── package.json
 ├── package-lock.json
+├── tsconfig.json
 ├── .gitignore
 ├── public
 │   ├── favicon.ico
@@ -67,12 +79,13 @@ your-app-name
 │   └── robots.txt
 └── src
     ├── App.css
-    ├── App.js
-    ├── App.test.js
+    ├── App.tsx
+    ├── App.test.tsx
     ├── index.css
-    ├── index.js
+    ├── index.tsx
     ├── logo.svg
-    ├── serviceWorker.js
+    ├── reportWebVitals.ts
+    ├── react-app-env.d.ts
     └── setupTests.js
 ```
 
@@ -81,15 +94,16 @@ Here's a quick rundown of what the key files/folders are used for:
 - `/public`: Used for static assets, most importantly our `index.html` file. If
   you look at the HTML in this file, you'll see a `<div>` with the ID of "root"
   — this is where our React components will go.
-- `/src`: All our Javascript and CSS code must go in this folder. This is where
+- `/src`: All our TypeScript and CSS code must go in this folder. This is where
   our React components live!
 - `package.json`: Our project configuration, including npm scripts and our
   project's list of dependencies.
+- `tsconfig.json`: Our TypeScript configuration.
 
 Even though our `package.json` only lists a few key dependencies (namely
-`react`, `react-dom`, and `react-scripts`), Create React App provides a number
-of other dependencies under the hood that make our lives as developers easier!
-For example:
+`react`, `react-dom`, `react-scripts`, `typescript`, and all necessary types),
+Create React App provides a number of other dependencies under the hood that
+make our lives as developers easier! For example:
 
 - **Babel**: a _transpiler_ for converting modern JavaScript, and JSX, into
   something all browsers can understand (more on that in the next lessons)
@@ -110,18 +124,17 @@ popular ones. A couple of highlights:
 
 - **Gatsby**: a static-site generator that turns your application into separate
   pages by building HTML files from JSX components. It's a popular choice for
-  personal blogs, including Dan Abramov's
-  [overreacted][]
+  personal blogs, including Dan Abramov's [overreacted][]
 - **Next.js**: a framework for creating static and server-side generated React
   applications. Read more about the differences between Client-Side Rendering
   and Server-Side Rendering [here][csr-ssr].
 
 ## Conclusion
 
-That's it! With Create React App, it's fast and easy to get a React app up and
-running. The app is ready to run with `npm start`, and will display some default
-content. The `README.md` file provided also has a very detailed breakdown of all
-the additional features that come with `create-react-app`.
+That's it! With Create React App, it's fast and easy to get a TypeScript React
+app up and running. The app is ready to run with `npm start`, and will display
+some default content. The `README.md` file provided also has a very detailed
+breakdown of all the additional features that come with `create-react-app`.
 
 While it is perfectly fine to set up your own React files, `create-react-app` is
 a handy solution to quickly get past any setup and get straight to designing
@@ -135,4 +148,5 @@ getting a nicely polished, up-to-date base for your React applications!
 [create-react-app documentation]: https://create-react-app.dev/
 [react-docs-create]: https://reactjs.org/docs/create-a-new-react-app.html
 [overreacted]: https://github.com/gaearon/overreacted.io
-[csr-ssr]: https://developers.google.com/web/updates/2019/02/rendering-on-the-web
+[csr-ssr]:
+  https://developers.google.com/web/updates/2019/02/rendering-on-the-web
